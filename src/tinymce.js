@@ -18,7 +18,7 @@ angular.module('ui.tinymce', [])
         options = {
           // Update model on button click
           onchange_callback: function (inst) {
-            if (inst.isDirty()) {
+            if (this.getContent() !== elm.val()) {
               inst.save();
               ngModel.$setViewValue(elm.val());
               if (!scope.$$phase) {
@@ -28,7 +28,7 @@ angular.module('ui.tinymce', [])
           },
           // Update model on keypress
           handle_event_callback: function (e) {
-            if (this.isDirty()) {
+            if (this.getContent() !== elm.val()) {
               this.save();
               ngModel.$setViewValue(elm.val());
               if (!scope.$$phase) {
@@ -43,7 +43,7 @@ angular.module('ui.tinymce', [])
               ngModel.$render();
             });
             ed.onSetContent.add(function (ed, o) {
-              if (ed.isDirty()) {
+              if (ed.getContent() !== elm.val()) {
                 ed.save();
                 ngModel.$setViewValue(elm.val());
                 if (!scope.$$phase) {
