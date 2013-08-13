@@ -17,9 +17,9 @@ angular.module('ui.tinymce', [])
         }
         options = {
           // Update model on button click
-          onchange_callback: function (inst) {
+          onchange_callback: function () {
             if (this.getContent() !== elm.val()) {
-              inst.save();
+              this.save();
               ngModel.$setViewValue(elm.val());
               if (!scope.$$phase) {
                 scope.$apply();
