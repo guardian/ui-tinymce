@@ -68,6 +68,10 @@ angular.module('ui.tinymce', [])
           tinymce.init(options);
         });
 
+        scope.$on('$destroy', function() {
+            tinyInstance.destroy();
+        });
+
         ngModel.$render = function() {
           if (!tinyInstance) {
             tinyInstance = tinymce.get(attrs.id);
