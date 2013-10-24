@@ -69,7 +69,10 @@ angular.module('ui.tinymce', [])
         });
 
         scope.$on('$destroy', function() {
-            tinyInstance.destroy();
+            // Sometimes this fails, perhaps because it was already destroyed.
+            try {
+              tinyInstance.destroy();
+            } catch (e) {}
         });
 
         ngModel.$render = function() {
